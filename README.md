@@ -2,7 +2,7 @@
 
 ## Цели проекта
 
-Собрать компактную игровую и мультимедийную приставку для ТВ на базе mini PC Ryzen H255 + 24 GB RAM.
+Собрать компактную игровую и мультимедийную приставку для ТВ на базе mini PC Ryzen H255 + 24 GB RAM + 500GB SSD.
 
 Основные требования:
 
@@ -23,9 +23,9 @@
 
 ---
 
-# Базовая архитектура
+## Базовая архитектура
 
-## SteamOS Mini PC
+### SteamOS Mini PC
 
 Роль:
 
@@ -48,23 +48,18 @@
 * минимум фоновых сервисов
 * максимальная стабильность suspend/resume
 
----
-
-## NAS
+### NAS
 
 Роль:
 
 * хранение медиа
-* Jellyfin server
-* torrents
-* backups
+* Jellyfin server (если нужно)
+* torrent-качалка
 * ROM storage
-* save backups
 * metadata
+* backups
 
----
-
-## Virtualization Host
+### Virtualization Host
 
 Роль:
 
@@ -77,9 +72,9 @@
 
 ---
 
-# Базовая ОС
+## Базовая ОС
 
-## ОС
+### ОС
 
 * SteamOS
 
@@ -91,11 +86,13 @@
 * gamescope integration
 * хорошая поддержка AMD GPU
 
+Допускается попробовать Nobara
+
 ---
 
-# Основной UX
+## Основной UX
 
-## Boot flow
+### Boot flow
 
 ```text
 Power On
@@ -115,11 +112,11 @@ Desktop mode используется только для:
 
 ---
 
-# Основной software stack
+## Основной software stack
 
-## Игры
+### Игры
 
-### Steam
+#### Steam
 
 Роль:
 
@@ -127,42 +124,30 @@ Desktop mode используется только для:
 * Big Picture UI
 * couch gaming
 
----
+### Emulation
 
-## Emulation
-
-### EmulationStation
+#### EmulationStation
 
 Роль:
 
 * единый frontend для эмуляторов
 
-### RetroArch
+### RetroDeck
 
 Роль:
 
 * ретро-консоли
 
-### Дополнительные standalone emulator'ы
-
-Планируется:
-
-* RPCS3
-* Dolphin
-* PCSX2
-* Yuzu/Sudachi/etc (по ситуации)
-
 ---
 
-# Media stack
+## Media stack
 
-## Kodi
+### Kodi
 
 Роль:
 
 * media center
 * fallback media UI
-* IPTV
 * локальное видео
 * plugins
 
@@ -171,17 +156,29 @@ Desktop mode используется только для:
 * запуск как non-steam app
 * управление полностью с gamepad
 
----
+### Jellyfin
 
-## Jellyfin
-
-### Сервер
+#### Сервер
 
 Размещается:
 
 * NAS
 
-### Клиент
+#### Клиент
+
+Размещается:
+
+* SteamOS mini PC
+
+### DLNA
+
+#### Сервер
+
+Размещается:
+
+* NAS
+
+#### Клиент
 
 Размещается:
 
@@ -190,14 +187,14 @@ Desktop mode используется только для:
 Варианты:
 
 * Kodi plugin
-* Jellyfin Media Player
-* browser app
+* Synology Video
+* ABXY Video
 
 ---
 
-# Streaming stack
+## Streaming stack
 
-## Sunshine
+### Sunshine
 
 Размещение:
 
@@ -208,9 +205,7 @@ Desktop mode используется только для:
 
 * game streaming host
 
----
-
-## Moonlight
+### Moonlight
 
 Размещение:
 
@@ -228,15 +223,17 @@ Desktop mode используется только для:
 
 ---
 
-# Browser stack
+## Browser stack
 
-## Основной browser
+### Основной browser
 
 Планируется:
 
 * Chromium
   или
 * Firefox
+  или
+* YandexBrowser for Android TV
 
 Требования:
 
@@ -246,9 +243,9 @@ Desktop mode используется только для:
 
 ---
 
-# Кинопоиск
+## Кинопоиск
 
-## Цель
+### Цель
 
 Полноценная работа:
 
@@ -256,11 +253,9 @@ Desktop mode используется только для:
 * fullscreen
 * без мышки
 
----
+### Варианты интеграции
 
-## Варианты интеграции
-
-### Вариант 1 — Browser App (приоритетный)
+#### Вариант 1 — Browser App (приоритетный)
 
 Отдельный fullscreen launcher:
 
@@ -286,7 +281,7 @@ Steam → Non-Steam App → Kinopoisk
 
 ---
 
-## Управление геймпадом
+### Управление геймпадом
 
 План:
 
@@ -302,9 +297,9 @@ Steam → Non-Steam App → Kinopoisk
 
 ---
 
-# VK Video
+## VK Video
 
-## Цель
+### Цель
 
 Просмотр:
 
@@ -312,11 +307,9 @@ Steam → Non-Steam App → Kinopoisk
 * gamepad-first
 * couch UX
 
----
+### Варианты интеграции
 
-## Варианты интеграции
-
-### Browser App
+#### Browser App
 
 Отдельный launcher через Steam.
 
@@ -331,34 +324,32 @@ Steam → Non-Steam App → Kinopoisk
 
 ---
 
-# YouTube
+## YouTube
 
-## Варианты
+### Варианты
 
-### Browser App
+#### Browser App
 
 или
 
-### Kodi plugin
+#### Kodi plugin
 
 ---
 
-# Controller UX
+## Controller UX
 
-## Основной принцип
+### Основной принцип
 
 Система должна быть usable:
 
 * без клавиатуры
 * без мыши
 
----
-
-## Steam Input Profiles
+### Steam Input Profiles
 
 Планируется отдельный профиль:
 
-### Media Profile
+#### Media Profile
 
 Mapping:
 
@@ -374,15 +365,13 @@ Mapping:
 
 ---
 
-# Gamescope
+## Gamescope
 
-## План
+### План
 
 Использовать gamescope-session как основной shell.
 
----
-
-## Tuning goals
+### Tuning goals
 
 * fixed refresh
 * stable frametime
@@ -393,9 +382,9 @@ Mapping:
 
 ---
 
-# Производительность
+## Производительность
 
-## Основной режим
+### Основной режим
 
 Цель:
 
@@ -403,11 +392,9 @@ Mapping:
 * низкий шум
 * минимальный fan spin
 
----
+### TDP Profiles
 
-## TDP Profiles
-
-### Silent
+#### Silent
 
 15W
 
@@ -417,9 +404,7 @@ Mapping:
 * retro
 * indie
 
----
-
-### Balanced
+#### Balanced
 
 25W
 
@@ -427,9 +412,7 @@ Mapping:
 
 * большинство игр
 
----
-
-### Performance
+#### Performance
 
 35W
 
@@ -440,9 +423,9 @@ Mapping:
 
 ---
 
-# Сетевые сервисы
+## Сетевые сервисы
 
-## Syncthing
+### Syncthing
 
 Роль:
 
@@ -451,9 +434,7 @@ Mapping:
 * configs
 * screenshots
 
----
-
-## Tailscale
+### (?) Tailscale
 
 Роль:
 
@@ -463,7 +444,7 @@ Mapping:
 
 ---
 
-# Будущие задачи
+## Будущие задачи
 
 * HDMI-CEC
 * wake from controller
@@ -476,9 +457,11 @@ Mapping:
 * parental control
 * unified remote-friendly UI
 
-# Дополнение — Voice Control & Voice Search
+---
 
-## Цели
+## Дополнение — Voice Control & Voice Search
+
+### Цели
 
 Система должна поддерживать:
 
@@ -491,9 +474,9 @@ Mapping:
 
 ---
 
-# Приоритетные сценарии
+## Приоритетные сценарии
 
-## Media Search
+### Media Search
 
 Примеры:
 
@@ -502,9 +485,7 @@ Mapping:
 * "включи VK Video"
 * "поставь YouTube"
 
----
-
-## System Control
+### System Control
 
 Примеры:
 
@@ -512,9 +493,7 @@ Mapping:
 * "открой Steam"
 * "запусти эмулятор"
 
----
-
-## Game Launching
+### Game Launching
 
 Примеры:
 
@@ -523,9 +502,9 @@ Mapping:
 
 ---
 
-# Возможные технологии
+## Возможные технологии
 
-## Speech-to-Text
+### Speech-to-Text
 
 Кандидаты:
 
@@ -533,9 +512,7 @@ Mapping:
 * faster-whisper
 * Vosk
 
----
-
-## Voice Assistant Layer
+### Voice Assistant Layer
 
 Кандидаты:
 
@@ -543,9 +520,7 @@ Mapping:
 * custom local assistant
 * LLM-powered assistant
 
----
-
-## Audio Input
+### Audio Input
 
 Варианты:
 
@@ -554,9 +529,7 @@ Mapping:
 * Bluetooth microphone
 * remote control microphone
 
----
-
-# Требования
+## Требования
 
 * local-first architecture
 * low latency
@@ -565,20 +538,16 @@ Mapping:
 * overlay interface
 * wake-word support (optional)
 
----
+## Возможные UX варианты
 
-# Возможные UX варианты
-
-## Push-to-talk
+### Push-to-talk
 
 Через:
 
 * кнопка на геймпаде
 * кнопка на пульте
 
----
-
-## Overlay UI
+### Overlay UI
 
 Полупрозрачный overlay:
 
@@ -588,7 +557,7 @@ Mapping:
 
 ---
 
-# Будущие исследования
+## Будущие исследования
 
 * overlay implementation
 * gamescope integration
