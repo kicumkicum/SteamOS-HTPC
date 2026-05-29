@@ -475,3 +475,126 @@ Mapping:
 * child-friendly profiles
 * parental control
 * unified remote-friendly UI
+
+# Дополнение — Voice Control & Voice Search
+
+## Цели
+
+Система должна поддерживать:
+
+* голосовой поиск
+* голосовое управление
+* media navigation
+* запуск приложений голосом
+* поиск фильмов/видео
+* поиск игр
+
+---
+
+# Приоритетные сценарии
+
+## Media Search
+
+Примеры:
+
+* "включи Интерстеллар"
+* "найди мультики"
+* "включи VK Video"
+* "поставь YouTube"
+
+---
+
+## System Control
+
+Примеры:
+
+* "выключи приставку"
+* "открой Steam"
+* "запусти эмулятор"
+
+---
+
+## Game Launching
+
+Примеры:
+
+* "запусти Cyberpunk"
+* "открой Minecraft"
+
+---
+
+# Возможные технологии
+
+## Speech-to-Text
+
+Кандидаты:
+
+* Whisper
+* faster-whisper
+* Vosk
+
+---
+
+## Voice Assistant Layer
+
+Кандидаты:
+
+* Home Assistant Assist
+* custom local assistant
+* LLM-powered assistant
+
+---
+
+## Audio Input
+
+Варианты:
+
+* USB microphone
+* gamepad headset
+* Bluetooth microphone
+* remote control microphone
+
+---
+
+# Требования
+
+* local-first architecture
+* low latency
+* работа без облака
+* gamepad-compatible UX
+* overlay interface
+* wake-word support (optional)
+
+---
+
+# Возможные UX варианты
+
+## Push-to-talk
+
+Через:
+
+* кнопка на геймпаде
+* кнопка на пульте
+
+---
+
+## Overlay UI
+
+Полупрозрачный overlay:
+
+* поверх gamescope
+* поверх Steam
+* поверх browser apps
+
+---
+
+# Будущие исследования
+
+* overlay implementation
+* gamescope integration
+* microphone routing
+* wake word
+* speech recognition quality
+* language models
+* TV-friendly voice UX
+
